@@ -1,0 +1,29 @@
+(function(json, element, success) {
+    var template = null;
+    var _f = {
+        init: function() {
+            _f.get(json.template, function(result) {
+                template = $(result);
+                element.append(template);
+                success();
+            });
+        },
+        get: function(url, success) {
+            Api.GET({
+                url: url,
+                success: function(result) {
+                    success(result);
+                }
+            });
+        }
+    };
+    _f.init();
+    return {
+        get: function() {
+            return template;
+        },
+        refresh: function() {
+            console.log('refresh');
+        }
+    }
+})

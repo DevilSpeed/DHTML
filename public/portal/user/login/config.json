@@ -1,0 +1,8 @@
+{
+    "layout": {
+        "name": "auto",
+        "url": "/template/layout/auto/config.json"
+    },
+    "template": "/portal/user/login/login.html",
+    "controller": "/portal/user/login/login.txt"
+}

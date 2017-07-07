@@ -1,0 +1,8 @@
+{
+    "layout": {
+        "name": "auto",
+        "url": "/template/layout/auto/config.json"
+    },
+    "template": "/portal/index/index.html",
+    "controller": "/portal/index/index.txt"
+}

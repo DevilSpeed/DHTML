@@ -1,0 +1,44 @@
+{
+    "verify": {
+        "public": ["/modules/common/verify/verify.js"],
+        "start": "verify",
+        "namespace": "Api.verify",
+        "depend": []
+    },
+    "loading": {
+        "public": ["/modules/common/loading/loading.js", "/modules/common/loading/loading.css"],
+        "start": "loading",
+        "namespace": "Api.loading",
+        "depend": []
+    },
+    "storage": {
+        "public": ["/modules/common/storage/storage.js"],
+        "start": "storage",
+        "namespace": "Api.storage",
+        "depend": []
+    },
+    "request": {
+        "public": ["/modules/common/request/request.js"],
+        "start": "request",
+        "namespace": "Api",
+        "depend": ["loading"]
+    },
+    "paging": {
+        "public": ["/modules/common/paging/paging.js", "/modules/common/paging/paging.css"],
+        "start": "paging",
+        "namespace": "Api",
+        "depend": ["Api.verify.judeType"]
+    },
+    "formtdate": {
+        "public": ["/modules/common/formtdate/formtdate.js"],
+        "start": "formtdate",
+        "namespace": "Api",
+        "depend": []
+    },
+    "parseurl": {
+        "public": ["/modules/common/parseurl/parseurl.js"],
+        "start": "parseurl",
+        "namespace": "Api",
+        "depend": ["Api"]
+    }
+}

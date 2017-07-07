@@ -1,0 +1,12 @@
+{
+    "navigation": {
+        "name": "auto",
+        "config": "/template/navigation/auto/config.json"
+    },
+    "footer": {
+        "name": "auto",
+        "config": "/template/footer/auto/config.json"
+    },
+    "template": "/template/layout/auto/auto.html",
+    "controller": "/template/layout/auto/auto.txt"
+}

@@ -1,0 +1,4 @@
+{
+    "template": "/template/navigation/auto/auto.html",
+    "controller": "/template/navigation/auto/auto.txt"
+}

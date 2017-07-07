@@ -1,0 +1,63 @@
+(function(json, success) {
+    var _v = {
+        success: null,
+        template: null,
+        navigation: {
+            template: null,
+            event: null,
+        },
+        footer: {
+            template: null,
+            event: null,
+        }
+    };
+    var _f = {
+        init: function() {
+            _v.success = success;
+            $('body').empty();
+            _f.get(json.template, function(result) {
+                _v.template = $(result);
+                $('body').append(_v.template);
+                // 获取导航
+                _f.initNavigation(json.navigation, function() {
+                    _f.initFooter(json.footer, function() {
+                        _v.success();
+                    });
+                });
+            });
+        },
+        initNavigation: function(navigationJson, success) {
+            _f.get(navigationJson.config, function(result) {
+                var navigationConfig = result;
+                _f.get(result.controller, function(result) {
+                    _v.navigation.event = eval('(' + result + ')')(navigationConfig, _v.template.find('#navigation'), success);
+                });
+            });
+        },
+        initFooter: function(footerJson, success) {
+            _f.get(footerJson.config, function(result) {
+                var footerConfig = result;
+                _f.get(result.controller, function(result) {
+                    _v.footer.event = eval('(' + result + ')')(footerConfig, _v.template.find('#footer'), success);
+                });
+            });
+        },
+        get: function(url, success) {
+            Api.GET({
+                url: url,
+                success: function(result) {
+                    success(result);
+                }
+            });
+        }
+    };
+    _f.init();
+    return {
+        getMain: function() {
+            return _v.template.find('#main')
+        },
+        clearContent : function () {
+            _v.template.find('#main').empty();
+        },
+    }
+})

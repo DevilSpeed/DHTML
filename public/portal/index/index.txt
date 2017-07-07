@@ -1,0 +1,48 @@
+(function(json, element, success) {
+    var template = null;
+    var _f = {
+        init: function() {
+            _f.get(json.template, function(result) {
+                template = $(result);
+
+                Api.paging({
+                    element: template.find('#pageing'),
+                    data: {
+                        index: '1',
+                        count: '15'
+                    },
+                    totalCountEvent: function(result) {
+                        var allpage = 1;
+                        return 100;
+                    },
+                    ajaxEvent: function(data, success) {
+                        success([]);
+                    },
+                    success: function(result, hasPaging) {
+
+                    }
+                }, 'wap');
+
+                element.append(template);
+                success();
+            });
+        },
+        get: function(url, success) {
+            Api.GET({
+                url: url,
+                success: function(result) {
+                    success(result);
+                }
+            });
+        }
+    };
+    _f.init();
+    return {
+        get: function() {
+            return template;
+        },
+        refresh: function() {
+            console.log('refresh');
+        }
+    }
+})
