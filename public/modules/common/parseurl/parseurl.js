@@ -30,6 +30,7 @@ var parseurl = (function(options) {
                 _f.formatUrl($this.attr('ui-href'));
             })
         },
+        // 测试修改
         formatUrl: function(url) {
             pathname = url || location.pathname;
             _v.history.url = pathname;
