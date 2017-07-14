@@ -17,21 +17,20 @@ var parseurl = (function(options) {
         init: function() {
             var url = _f.formatUrl();
             console.log('get Config by : ' + url);
-            window.addEventListener("popstate", function() {
-                var currentState = history.state;
-                if (_v.layout.event) {
-                    _v.layout.event.clearContent();
-                };
-                _f.formatUrl(currentState.url);
-                console.log(currentState);
+            // 监听前进后退事件
+            window.addEventListener("popstate", function(event) {
+                var currentState = event.state;
+                if (currentState) {
+                    _f.formatUrl(currentState.url);
+                } else {
+                    console.log(currentState);
+                }
             });
             $('body').on('click', 'a', function() {
-                $this = $(this);
-                _f.formatUrl($this.attr('ui-href'));
+                _f.formatUrl($(this).attr('ui-href'));
             })
         },
-        // 测试修改
-        formatUrl: function(url) {
+        formatUrl: function(url) { //格式化URL
             pathname = url || location.pathname;
             _v.history.url = pathname;
             pathname != '/' ? (url = '/portal' + pathname + '/config.json') : (url = '/portal/index/config.json');
@@ -45,9 +44,7 @@ var parseurl = (function(options) {
                 _f.readerLayout(result, function() {
                     _f.readerPortal(result, function() {
                         console.log('reader success');
-                        window.history.pushState({
-                            url: _v.history.url,
-                        }, '首页', _v.history.url);
+                        // window.history.pushState({ url: _v.history.url }, 0, _v.history.url);
                     });
                 });
             })
@@ -74,9 +71,9 @@ var parseurl = (function(options) {
                 };
             } else {
                 _f.initJson('/portal/index/config.json');
-                window.history.pushState({
-                    url: '/index',
-                }, '首页', '/index');
+                // window.history.pushState({
+                //     url: '/index',
+                // }, '首页', '/index');
             }
         },
         readerPortal: function(config, success) {
